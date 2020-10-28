@@ -41,10 +41,12 @@ struct Usuario {
 	char sexo;
 	char telefone[13];
 };
+
 struct Categoria {
 	int codigo;
 	char nome[51];
 };
+
 struct Produto {
 	int codigo;
 	char titulo[100];
@@ -52,6 +54,7 @@ struct Produto {
 	int categoria;
 	float preco;
 };
+
 struct Avaliacao {
 	int codigoUsuario;
 	int codigoProduto;
@@ -101,10 +104,12 @@ void telefone(char tel[]) {
 		}
 	}
 }
+
 void senha(char vet[]) {
 	int i = 0;
 	printf("Senha: ");
 	fflush(stdin);
+
 	while (1) {
 		vet[i] = getch();
 		if (vet[i] == ENTER) {
@@ -199,6 +204,7 @@ struct Usuario login(char *nomeArq) {
 	system("PAUSE");
 	return;
 }
+
 int buscarAvaliacao(int cod, int codProd) {
 	FILE *arq;
 	struct Usuario usuario;
@@ -219,6 +225,7 @@ int buscarAvaliacao(int cod, int codProd) {
 	}
 	return 1;
 }
+
 int validarCodigoConsProd(int cod) {
 	struct Produto produto;
 	FILE *arq;
@@ -234,6 +241,7 @@ int validarCodigoConsProd(int cod) {
 	}
 	return 1;
 }
+
 struct Produto consultarProdutosAvaliacao(char *nomeArq) {
 	struct Produto produto;
 	FILE *arq;
@@ -311,6 +319,7 @@ struct Produto consultarProdutosAvaliacao(char *nomeArq) {
 		printf("\nErro ao tentar fechar arquivo!\n");
 	}
 }
+
 void avaliacao(char *nomeArq) {
 	FILE *arq;
 	struct Avaliacao avaliacao;
@@ -410,6 +419,7 @@ int validarTel(char tel[]) {
 	}
 	return 1;
 }
+
 int validarCodigoUsuario(int cod, char *nomeArq) {
 	struct Usuario usuario;
 	FILE *arq;
@@ -425,6 +435,7 @@ int validarCodigoUsuario(int cod, char *nomeArq) {
 	}
 	return 1;
 }
+
 int validarCodigoCategoria(int cod, char *nomeArq) {
 	struct Categoria categoria;
 	FILE *arq;
@@ -440,6 +451,7 @@ int validarCodigoCategoria(int cod, char *nomeArq) {
 	}
 	return 1;
 }
+
 int validarCodigoProduto(int cod, char *nomeArq) {
 	struct Produto produto;
 	FILE *arq;
@@ -455,6 +467,7 @@ int validarCodigoProduto(int cod, char *nomeArq) {
 	}
 	return 1;
 }
+
 int validarLogin(char *login, char *nomeArq) {
 	struct Usuario usuario;
 	FILE *arq;
@@ -470,6 +483,7 @@ int validarLogin(char *login, char *nomeArq) {
 	}
 	return 1;
 }
+
 int validarSenha(char vet[]) {
 	int i;
 	for (i = 0; i < strlen(vet); i++) {
@@ -479,6 +493,7 @@ int validarSenha(char vet[]) {
 	}
 	return 1;
 }
+
 int validarNome(char nome[]) {
 	int i;
 	for (i = 0; i < strlen(nome) - 1; i++) {
@@ -488,6 +503,7 @@ int validarNome(char nome[]) {
 	}
 	return 1;
 }
+
 int validarCategoria(int cat) {
 	struct Categoria categoria;
 	FILE *arq;
@@ -579,6 +595,7 @@ void listarUsuario(char *nomeArq) {
 	}
 	printf("\n");
 }
+
 void listarCategoria(char *nomeArq) {
 	FILE *arq;
 	struct Categoria categoria;
@@ -601,6 +618,7 @@ void listarCategoria(char *nomeArq) {
 		printf("\nErro ao fechar arquivo!\n");
 	}
 }
+
 void listarProduto(char *nomeArq) { // FALTANDO FAZER AS OPÇÕES DE ORDENAMENTO.
 	FILE *arq;
 	FILE *arqAux;
@@ -721,6 +739,7 @@ void cadastroUsuario(char *nomeArq) {
 		printf("\nErro ao fechar arquivo!\n");
 	}
 }
+
 void cadastroCategoria(char *nomeArq) {
 	FILE *arq;
 	struct Categoria categoria;
@@ -760,6 +779,7 @@ void cadastroCategoria(char *nomeArq) {
 		printf("\nErro ao fechar arquivo!\n");
 	}
 }
+
 void cadastroProduto(char *nomeArq) {
 	int i;
 	struct Produto produto;
@@ -806,10 +826,10 @@ void cadastroProduto(char *nomeArq) {
 			printf("Código da categoria: ");
 			scanf("%i", &produto.categoria);
 		}
-		if (validarCategoria(produto.categoria, PRODUTOS) == 1) {
+		if (validarCategoria(produto.categoria) == 1) {
 			printf("Esta categoria não consta em nosso banco de dados!\nDigite novamente o ");
 		}
-	} while (validarCategoria(produto.categoria, PRODUTOS) == 1 || produto.categoria < 1);
+	} while (validarCategoria(produto.categoria) == 1 || produto.categoria < 1);
 	do {
 		printf("Preço: ");
 		scanf("%f", &produto.preco);
@@ -951,6 +971,7 @@ void consultarUsuario(char *nomeArq) {
 		printf("\nErro ao fechar arquivo!\n");
 	}
 }
+
 void consultarCategoria(char *nomeArq) {
 	struct Categoria categoria;
 	FILE *arq;
@@ -1016,6 +1037,7 @@ void consultarCategoria(char *nomeArq) {
 		printf("\nErro ao tentar fechar arquivo!\n");
 	}
 }
+
 void consultarProdutos(char *nomeArq) {
 	struct Produto produto;
 	struct Avaliacao avaliacao;
@@ -1176,6 +1198,7 @@ void menuAlterarUsuario(int *menu) {
 	} while (*menu < 1 || *menu> 6);
 	system("cls");
 }
+
 void menuAlterarCategoria(int *menu) {
 	printf("\n\n\t\t\t      Hora: ");
 	system("time/t");
@@ -1193,6 +1216,7 @@ void menuAlterarCategoria(int *menu) {
 			printf("Informe uma opção válida\n");
 	} while (*menu < 1 || *menu> 6);
 }
+
 void menuAlterarProduto(int *menu) {
 	printf("\n\n\t\t\t      Hora: ");
 	system("time/t");
@@ -1213,6 +1237,7 @@ void menuAlterarProduto(int *menu) {
 			printf("Informe uma opção válida\n");
 	} while (*menu < 1 || *menu> 6);
 }
+
 void alterarUsuario(char *nomeArq) {
 	FILE *arq;
 	struct Usuario usuario;
@@ -1791,6 +1816,7 @@ void alterarUsuario(char *nomeArq) {
 		printf("Erro ao fechar arquivo!\n");
 	}
 }
+
 void alterarCategoria(char *nomeArq) {
 	FILE *arq;
 	struct Categoria categoria;
@@ -1892,6 +1918,7 @@ void alterarCategoria(char *nomeArq) {
 		break;
 	}
 }
+
 void alterarProduto(char *nomeArq) {
 	FILE *arq;
 	struct Produto produto;
@@ -1998,10 +2025,10 @@ void alterarProduto(char *nomeArq) {
 							printf("Novo código da categoria: ");
 							scanf("%i", &produto.categoria);
 						}
-						if (validarCategoria(produto.categoria, PRODUTOS) == 1) {
+						if (validarCategoria(produto.categoria) == 1) {
 							printf("Esta categoria não consta em nosso banco de dados!\nDigite novamente o ");
 						}
-					} while (validarCategoria(produto.categoria, PRODUTOS) == 1 || produto.categoria < 1);
+					} while (validarCategoria(produto.categoria) == 1 || produto.categoria < 1);
 					if (fwrite(&produto, sizeof(struct Produto), 1, arq) != 1)
 						printf("Erro ao fazer a alteração!\n");
 					else
@@ -2293,6 +2320,7 @@ void removerUsuario(char *nomeArq, char *nomeTemp) {
 		}
 	}
 }
+
 void removerCategoria(char *nomeArq, char *nomeTemp) {
 	int op;
 	int flag = 0;
@@ -2419,6 +2447,7 @@ void removerCategoria(char *nomeArq, char *nomeTemp) {
 			printf("Categoria removida com sucesso!\n\n");
 	}
 }
+
 void removerProduto(char *nomeArq, char *nomeTemp) {
 	int op;
 	int flag = 0;
@@ -2564,6 +2593,7 @@ void menuUsuario() {
 		}
 	} while (op != 6);
 }
+
 void menuCategoria() {
 	int op;
 
@@ -2612,6 +2642,7 @@ void menuCategoria() {
 		}
 	} while (op != 6);
 }
+
 int menuProduto(int menu) {
 	int op;
 	if (menu != 5) {
@@ -2670,6 +2701,7 @@ int menuProduto(int menu) {
 
 int main() {
 	int op;
+	setlocale(LC_ALL, "portuguese");
 	configTela();
 	printf("\n\n\t\t\t      Hora: ");
 	system("time/t");
@@ -2680,10 +2712,7 @@ int main() {
 	printf("  *| |_) |  | __/ | | | | | |    \\ V /  | | | | | | | (_| | | (_) |   |_|*\n");
 	printf("  *|____/   \\___| |_| |_| |_|     \\_/   |_| |_| |_|  \\__,_|  \\___/    (_)*\n");
 	printf("  ************************************************************************\n\n\n");
-	printf("\n\n--Desenvolvedore                        Matricula\n\n\n");
-	printf("João Gabriel Costa Sodré da Mota    ||  201520863-2\n");
-	printf("Ramon Ranieri Alves Alcântara       ||  201520474-0\n");
-	printf("Tiago Marques Emerenciano           ||  201520867-9\n\n");
+
 	system("pause");
 	system("cls");
 	do {
